@@ -52,14 +52,13 @@ passport.deserializeUser(function(id, done) {
  * @param {*} res 
  * @param {*} next 
  */
-function checkAuthentication(req,res,next){
-  if(req.isAuthenticated()){
-      //if user is looged in, req.isAuthenticated() will return true 
-      next();
-  } else{
-      res.redirect("/");
-  }
-}
+// const authcheck= function(req,res,next){
+//   if(!req.user){
+//        res.redirect('/');
+//   }else{
+//       next();
+//   }
+// }
 router.get('/', function(req, res, next) {
   res.render('login', { title: 'Express',errors:null});
 });
@@ -72,7 +71,7 @@ router.post('/',
 /**
  * checkAuthentication : check xem nếu đã đăng nhập thì đc phép vào admin còn ko thì về home
  */
-router.get("/admin",checkAuthentication,function(req,res,next){  
-  res.send("Chào Bạn:"+req.user);
-})
+// router.get("/admin",authcheck,function(req,res,next){  
+//   // res.send(req.user);
+// })
 module.exports = router;

@@ -35,20 +35,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(expressValidator());
 app.use(session({
   secret: 'MasterTVC',
   resave: false,
   saveUninitialized: true
   // cookie: { secure: true }
 }))
-
+app.use(passport.initialize());
+app.use(passport.session());
 app.use('/', index);
 app.use('/users', users);
 app.use('/register', register);
 // cấu hình passport;
-app.use(expressValidator());
+
 
 
 // catch 404 and forward to error handler
